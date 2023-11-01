@@ -12,3 +12,7 @@ variable "roles" {
   description = "The roles that will be granted to the service account."
   default     = []
 }
+
+variable "project_id" {
+  type = string
+}

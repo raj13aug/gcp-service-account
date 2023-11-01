@@ -20,6 +20,11 @@ resource "google_project_iam_member" "sa_iam" {
   ]
 }
 
-resource "google_service_account_key" "sa_key" {
+resource "google_service_account_key" "gcp_tests" {
   service_account_id = google_service_account.sa.name
+}
+
+resource "local_file" "gcp_tests_store" {
+  content  = base64decode(google_service_account_key.gcp_tests.private_key)
+  filename = "${path.module}/tester.json"
 }
