@@ -1,3 +1,3 @@
-project_id = "some-project-id"
+project_id = "mytesting-400910"
 
 account_id = "admin"
