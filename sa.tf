@@ -1,3 +1,5 @@
+data "google_client_config" "google_client" {}
+
 resource "google_service_account" "sa" {
   account_id   = var.account_id
   display_name = var.description
@@ -6,7 +8,7 @@ resource "google_service_account" "sa" {
 resource "google_project_iam_member" "sa_iam" {
   for_each = toset(var.roles)
 
-  project = var.project_id
+  project = data.google_client_config.google_client.project #var.project_id
   role    = each.value
   member  = "serviceAccount:${google_service_account.sa.email}"
 }
